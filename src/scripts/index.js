@@ -1,3 +1,5 @@
+import { user } from "/src/scripts/services/user.js"
+import { repositories } from "/src/scripts/services/repositories.js"
 document.getElementById('btn-search').addEventListener('click', () => { 
     const userName = document.getElementById('input-search').value
 getUserProfile(userName) //chama a função getUserProfile passando o valor do input como parâmetro
@@ -14,18 +16,10 @@ document.getElementById('input-search').addEventListener('keyup', (e) => {
 
 })
 
-async function user (userName) {
 
-    const response = await fetch(`https://api.github.com/users/${userName}`) //await espera a resposta da requisição para continuar a execução do código
-    return await response.json()
-}
-async function repos (userName) {
 
-    const response = await fetch(`https://api.github.com/users/${userName}/repos`) //await espera a resposta da requisição para continuar a execução do código
-    return await response.json()
-}
 function getUserProfile (userName) {
-    repos(userName).then(reposData => {
+    repositories(userName).then(reposData => {
         console.log(reposData)
 
 
